@@ -61,5 +61,14 @@
             android:text="该设备支持计步"
             android:textColor="#333333" />
 
+        <Button
+            android:id="@+id/feeling_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="69dp"
+            android:text="锻炼感想" />
+
     </RelativeLayout>
 </RelativeLayout>

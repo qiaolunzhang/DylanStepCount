@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import cn.bluemobi.dylan.step.R;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private StepArcView cc;
     private TextView tv_set;
     private TextView tv_isSupport;
+    private Button feeling_button;
     private SharedPreferencesUtils sp;
 
     private void assignViews() {
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cc = (StepArcView) findViewById(R.id.cc);
         tv_set = (TextView) findViewById(R.id.tv_set);
         tv_isSupport = (TextView) findViewById(R.id.tv_isSupport);
+        feeling_button = (Button) findViewById(R.id.feeling_button);
     }
 
     @Override
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void addListener() {
         tv_set.setOnClickListener(this);
         tv_data.setOnClickListener(this);
+        feeling_button.setOnClickListener(this);
     }
 
     private void initData() {
@@ -119,6 +123,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.tv_data:
                 startActivity(new Intent(this, HistoryActivity.class));
+                break;
+            case R.id.feeling_button:
+                startActivity(new Intent(this, FeelingActivity.class));
                 break;
         }
     }
