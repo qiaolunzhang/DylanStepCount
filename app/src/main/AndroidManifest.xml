@@ -3,6 +3,7 @@
     package="cn.bluemobi.dylan.step">
 
     <!--计歩-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
@@ -17,6 +18,9 @@
     <uses-feature
         android:name="android.hardware.sensor.stepdetector"
         android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false"/>
 
     <application
         android:name=".app.MyApplication"
