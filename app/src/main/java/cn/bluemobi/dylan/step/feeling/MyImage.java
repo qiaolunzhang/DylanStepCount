@@ -1,5 +1,7 @@
 package cn.bluemobi.dylan.step.feeling;
 
+import com.google.gson.annotations.Expose;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -11,7 +13,7 @@ import java.util.Calendar;
 public class MyImage {
     private String title, description, path;
     private long datetimeLong;
-    private SimpleDateFormat df = new SimpleDateFormat("MMMM d, yy  h:mm");
+    private transient SimpleDateFormat df = new SimpleDateFormat("MMMM d, yy  h:mm");
 
     public MyImage(String title, String description, String path,
                    long datetimeLong) {
