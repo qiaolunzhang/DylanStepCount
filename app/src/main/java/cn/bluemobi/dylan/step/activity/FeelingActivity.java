@@ -1,7 +1,9 @@
 package cn.bluemobi.dylan.step.activity;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -9,11 +11,13 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -146,6 +150,18 @@ public class FeelingActivity extends AppCompatActivity{
                     String picturePath = cursor.getString(column_index_data);
                     MyImage image = new MyImage();
                     image.setTitle("Test");
+
+
+                    View view1 = LayoutInflater.from(this).inflate(R.layout.dialog_view, null);
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setTitle("自定义对话框");
+                    builder.setIcon(R.mipmap.ic_launcher);//设置图标
+                    //设置自定义view
+                    builder.setView(view1);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
                     image.setDescription("test take a photo and add it to list view");
                     image.setDatetime(System.currentTimeMillis());
                     image.setPath(picturePath);
