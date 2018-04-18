@@ -23,6 +23,8 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 import cn.bluemobi.dylan.step.R;
@@ -79,6 +81,7 @@ public class FeelingActivity extends AppCompatActivity{
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.custom_dialog_box);
         dialog.setTitle("Alert Dialog View");
+        TextInputLayout textInputLayout = (TextInputLayout) dialog.findViewById(R.id.text_input_layout);
         Button btnExit = (Button) dialog.findViewById(R.id.btnExit);
         btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,7 +110,7 @@ public class FeelingActivity extends AppCompatActivity{
      * exit editing feeling dialog
      */
     private void exit_feeling_dialog() {
-        TextInputEditText feeling_text = (TextInputEditText) findViewById(R.id.feeling_text);
+        TextInputEditText feeling_text = (TextInputEditText) dialog.findViewById(R.id.feeling_text);
         para_image.setDescription(feeling_text.toString());
         daOdb.updateImage(para_image);
         dialog.dismiss();
