@@ -9,6 +9,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -40,6 +42,11 @@ public class FeelingActivity extends AppCompatActivity{
     private static final int REQUEST_IMAGE_CAPTURE = 2;
     private DAOdb daOdb;
 
+    // related to image
+    private Dialog dialog;
+    MyImage para_image;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,14 +75,15 @@ public class FeelingActivity extends AppCompatActivity{
     }
 
     public void btnAddOnClick(View view) {
-        final Dialog dialog = new Dialog(this);
+
+        dialog = new Dialog(this);
         dialog.setContentView(R.layout.custom_dialog_box);
         dialog.setTitle("Alert Dialog View");
         Button btnExit = (Button) dialog.findViewById(R.id.btnExit);
         btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.dismiss();
+                exit_feeling_dialog();
             }
         });
         dialog.findViewById(R.id.btnChoosePath).setOnClickListener(new View.OnClickListener() {
@@ -94,6 +102,17 @@ public class FeelingActivity extends AppCompatActivity{
         // show dialog on screen
         dialog.show();
     }
+
+    /**
+     * exit editing feeling dialog
+     */
+    private void exit_feeling_dialog() {
+        TextInputEditText feeling_text = (TextInputEditText) findViewById(R.id.feeling_text);
+        para_image.setDescription(feeling_text.toString());
+        daOdb.updateImage(para_image);
+        dialog.dismiss();
+    }
+
 
     /**
      * take a photo
@@ -132,14 +151,14 @@ public class FeelingActivity extends AppCompatActivity{
                     int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                     String picturePath = cursor.getString(columnIndex);
                     cursor.close();
-                    MyImage image = new MyImage();
-                    image.setTitle("Test");
-                    image.setDescription("test choose a photo from gallery and add it to " + "list view");
-                    image.setDatetime(System.currentTimeMillis());
-                    image.setPath(picturePath);
+                    MyImage new_image= new MyImage();
+                    new_image.setTitle("感想");
+                    new_image.setDescription("这是今天记录的图片。");
+                    new_image.setDatetime(System.currentTimeMillis());
+                    new_image.setPath(picturePath);
                     //                    images.add(image);//notifyDataSetChanged does not work well sometimes
-                    imageAdapter.add(image);
-                    daOdb.addImage(image);
+                    imageAdapter.add(new_image);
+                    daOdb.addImage(new_image);
                 }
             case REQUEST_IMAGE_CAPTURE:
                 if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
@@ -148,10 +167,11 @@ public class FeelingActivity extends AppCompatActivity{
                     int column_index_data = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
                     cursor.moveToFirst();
                     String picturePath = cursor.getString(column_index_data);
-                    MyImage image = new MyImage();
-                    image.setTitle("Test");
+                    MyImage new_image = new MyImage();
+                    new_image.setTitle("感想");
 
 
+                    /*
                     View view1 = LayoutInflater.from(this).inflate(R.layout.dialog_view, null);
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -161,13 +181,14 @@ public class FeelingActivity extends AppCompatActivity{
                     builder.setView(view1);
                     AlertDialog dialog = builder.create();
                     dialog.show();
+                    */
 
-                    image.setDescription("test take a photo and add it to list view");
-                    image.setDatetime(System.currentTimeMillis());
-                    image.setPath(picturePath);
-                    imageAdapter.add(image);
+                    new_image.setDescription("这是今天记录的图片。");
+                    new_image.setDatetime(System.currentTimeMillis());
+                    new_image.setPath(picturePath);
+                    imageAdapter.add(new_image);
                     //                    images.add(image);
-                    daOdb.addImage(image);
+                    daOdb.addImage(new_image);
                 }
         }
     }

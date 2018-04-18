@@ -45,6 +45,11 @@ public class DAOdb {
         return database.insert(DBhelper.TABLE_NAME, null, cv);
     }
 
+    public long updateImage(MyImage image) {
+        // use dastetime and title to updat the image
+        return 1;
+    }
+
     /**
      * delete the given image from database
      *
