@@ -47,6 +47,8 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".feeling.DisplayImage"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".feeling.EditingActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <service
             android:name=".step.service.StepService"

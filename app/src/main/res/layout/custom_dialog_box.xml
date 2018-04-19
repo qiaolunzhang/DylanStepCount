@@ -37,13 +37,13 @@
         android:id="@+id/btnExit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="77dp"
+        android:layout_marginTop="153dp"
         android:width="200dp"
         android:background="@color/deepPurple4"
         android:onClick="btnExitClicked"
-        android:text="Confirm"
+        android:text="Exit"
         android:textColor="@color/black" />
 
     <android.support.design.widget.TextInputLayout
@@ -54,10 +54,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="200dp">
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/feeling_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
     </android.support.design.widget.TextInputLayout>
 </RelativeLayout>

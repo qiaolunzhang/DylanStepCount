@@ -1,9 +1,7 @@
-package cn.bluemobi.dylan.step.activity;
+package cn.bluemobi.dylan.step.feeling;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ContentValues;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -11,94 +9,60 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Toast;
-
-import com.google.gson.Gson;
 
 import org.w3c.dom.Text;
 
-import java.util.ArrayList;
-
 import cn.bluemobi.dylan.step.R;
-import cn.bluemobi.dylan.step.feeling.DAOdb;
-import cn.bluemobi.dylan.step.feeling.DisplayImage;
-import cn.bluemobi.dylan.step.feeling.EditingActivity;
-import cn.bluemobi.dylan.step.feeling.ImageAdapter;
-import cn.bluemobi.dylan.step.feeling.MyImage;
 
-
-public class FeelingActivity extends AppCompatActivity{
-
-    private ArrayList<MyImage> images;
-    private ImageAdapter imageAdapter;
-    private ListView listView;
+public class EditingActivity extends AppCompatActivity implements View.OnClickListener{
     private Uri mCapturedImageURI;
     private static final int RESULT_LOAD_IMAGE = 1;
     private static final int REQUEST_IMAGE_CAPTURE = 2;
-    private static final int RESULT_EDITING_FEELING = 3;
-    private DAOdb daOdb;
-
-    // related to image
-    private Dialog dialog;
-    MyImage para_image;
-
-
+    Button add_pic_button;
+    Button confirm_add_pic_button;
+    Button giveup_add_button;
+    TextInputEditText feeling_text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ac_feeling);
-
-        // Construct the data source
-        images = new ArrayList();
-        // Create the adapter to convert the array to views
-        imageAdapter = new ImageAdapter(this, images);
-        // Attach the adapter to a ListView
-        listView = (ListView) findViewById(R.id.main_list_view);
-        listView.setAdapter(imageAdapter);
-        addItemClickListener(listView);
-        initDB();
+        setContentView(R.layout.ac_editing_feeling);
+        init_widget();
+        add_listener();
     }
 
-    /**
-     * initialize database
-     */
-    private void initDB() {
-        daOdb = new DAOdb(this);
-        //        add images from database to images ArrayList
-        for (MyImage mi : daOdb.getImages()) {
-            images.add(mi);
-        }
+    public void init_widget() {
+        add_pic_button = (Button) findViewById(R.id.add_pic_button);
+        confirm_add_pic_button = (Button) findViewById(R.id.confirm_add_pic_buttton);
+        giveup_add_button = (Button) findViewById(R.id.giveup_add_pic_button);
+        feeling_text = (TextInputEditText) findViewById(R.id.all_feeling_text);
     }
 
-    public void btnAddOnClick(View view) {
+    public void add_listener() {
+        add_pic_button.setOnClickListener(this);
+        confirm_add_pic_button.setOnClickListener(this);
+        giveup_add_button.setOnClickListener(this);
+    }
 
-        Intent intent = new Intent();
-        intent.setClass(FeelingActivity.this, EditingActivity.class);
-        startActivityForResult(intent, RESULT_EDITING_FEELING);
-        /*
-        dialog = new Dialog(this);
+    public void add_pic() {
+
+        final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.custom_dialog_box);
         dialog.setTitle("Alert Dialog View");
-        TextInputLayout textInputLayout = (TextInputLayout) dialog.findViewById(R.id.text_input_layout);
         Button btnExit = (Button) dialog.findViewById(R.id.btnExit);
         btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                exit_feeling_dialog();
+                dialog.dismiss();
             }
         });
         dialog.findViewById(R.id.btnChoosePath).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activeGallery();
+                //todo activeGallery();
             }
         });
         dialog.findViewById(R.id.btnTakePhoto).setOnClickListener(new View.OnClickListener() {
@@ -108,21 +72,7 @@ public class FeelingActivity extends AppCompatActivity{
             }
         });
 
-        // show dialog on screen
         dialog.show();
-        */
-    }
-
-    /**
-     * exit editing feeling dialog
-     */
-    private void exit_feeling_dialog() {
-        /*
-        TextInputEditText feeling_text = (TextInputEditText) dialog.findViewById(R.id.feeling_text);
-        para_image.setDescription(feeling_text.toString());
-        daOdb.updateImage(para_image);
-        */
-        dialog.dismiss();
     }
 
 
@@ -141,23 +91,26 @@ public class FeelingActivity extends AppCompatActivity{
         }
     }
 
-    /**
-     * to gallery
-     */
-    private void activeGallery() {
-        Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, RESULT_LOAD_IMAGE);
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.add_pic_button:
+                add_pic();
+                break;
+            case R.id.confirm_add_pic_buttton:
+                String feeling_string= feeling_text.getText().toString();
+                Log.d("feeling", feeling_string);
+                break;
+            case R.id.giveup_add_pic_button:
+                finish();
+                break;
+        }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-            case RESULT_EDITING_FEELING:
-                if (requestCode == RESULT_EDITING_FEELING && resultCode == RESULT_OK && null != data) {
-                    //todo 接受回传数据，储存数据库
-                    return;
-                }
             case RESULT_LOAD_IMAGE:
                 if (requestCode == RESULT_LOAD_IMAGE &&
                         resultCode == RESULT_OK && null != data) {
@@ -174,8 +127,9 @@ public class FeelingActivity extends AppCompatActivity{
                     new_image.setDatetime(System.currentTimeMillis());
                     new_image.setPath(picturePath);
                     //                    images.add(image);//notifyDataSetChanged does not work well sometimes
-                    imageAdapter.add(new_image);
-                    daOdb.addImage(new_image);
+                    //imageAdapter.add(new_image);
+                    //daOdb.addImage(new_image);
+                    //todo 回传图片数据
                 }
             case REQUEST_IMAGE_CAPTURE:
                 if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
@@ -203,49 +157,11 @@ public class FeelingActivity extends AppCompatActivity{
                     new_image.setDescription("这是今天记录的图片。");
                     new_image.setDatetime(System.currentTimeMillis());
                     new_image.setPath(picturePath);
-                    imageAdapter.add(new_image);
+                    //imageAdapter.add(new_image);
                     //                    images.add(image);
-                    daOdb.addImage(new_image);
+                    //daOdb.addImage(new_image);
+                    //todo 回传图片数据
                 }
-        }
-    }
-
-    /**
-     * item clicked listener used to implement the react action when an item is clicked.
-     *
-     * @param listView
-     */
-    private void addItemClickListener(final ListView listView) {
-        listView.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                MyImage image = (MyImage) listView.getItemAtPosition(position);
-                Intent intent = new Intent(getBaseContext(), DisplayImage.class);
-                intent.putExtra("IMAGE", (new Gson()).toJson(image));
-                startActivity(intent);
-            }
-        });
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        // Save the user's current game state
-        if (mCapturedImageURI != null) {
-            outState.putString("mCapturedImageURI", mCapturedImageURI.toString());
-        }
-        // Always call the superclass so it can save the view hierarchy state
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        // Always call the superclass so it can restore the view hierarchy
-        super.onRestoreInstanceState(savedInstanceState);
-
-        // Restore state members from saved instance
-        if (savedInstanceState.containsKey("mCapturedImageURI")) {
-            mCapturedImageURI = Uri.parse(savedInstanceState.getString("mCapturedImageURI"));
         }
     }
 }
