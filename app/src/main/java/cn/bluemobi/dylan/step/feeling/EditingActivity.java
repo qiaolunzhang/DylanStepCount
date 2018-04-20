@@ -22,10 +22,12 @@ public class EditingActivity extends AppCompatActivity implements View.OnClickLi
     private Uri mCapturedImageURI;
     private static final int RESULT_LOAD_IMAGE = 1;
     private static final int REQUEST_IMAGE_CAPTURE = 2;
+    private static final int RESULT_EDITING_FEELING = 3;
     Button add_pic_button;
     Button confirm_add_pic_button;
     Button giveup_add_button;
     TextInputEditText feeling_text;
+    Dialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +51,7 @@ public class EditingActivity extends AppCompatActivity implements View.OnClickLi
 
     public void add_pic() {
 
-        final Dialog dialog = new Dialog(this);
+        dialog = new Dialog(this);
         dialog.setContentView(R.layout.custom_dialog_box);
         dialog.setTitle("Alert Dialog View");
         Button btnExit = (Button) dialog.findViewById(R.id.btnExit);
@@ -157,6 +159,12 @@ public class EditingActivity extends AppCompatActivity implements View.OnClickLi
                     new_image.setDescription("这是今天记录的图片。");
                     new_image.setDatetime(System.currentTimeMillis());
                     new_image.setPath(picturePath);
+
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra("new_image", new_image);
+                    setResult(RESULT_EDITING_FEELING, resultIntent);
+                    dialog.dismiss();
+                    finish();
                     //imageAdapter.add(new_image);
                     //                    images.add(image);
                     //daOdb.addImage(new_image);

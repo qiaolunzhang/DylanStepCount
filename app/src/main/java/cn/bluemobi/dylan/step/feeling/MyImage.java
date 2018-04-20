@@ -2,15 +2,17 @@ package cn.bluemobi.dylan.step.feeling;
 
 import com.google.gson.annotations.Expose;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * This file is part of SqliteImage
  * <p/>
  * Created by GuoJunjun <junjunguo.com> on March 22, 2015.
  */
-public class MyImage {
+public class MyImage implements Serializable{
     private String title, description, path;
     private long datetimeLong;
     private transient SimpleDateFormat df = new SimpleDateFormat("MMMM d, yy  h:mm");
@@ -108,7 +110,14 @@ public class MyImage {
 
     @Override
     public String toString() {
-        return "Title:" + title + "   " + df.format(getDatetime().getTime()) +
-                "\nDescription:" + description;
+        Date df_date = getDatetime().getTime();
+        //todo 1 这里为什么一直会有SimpleDateFormat.format(java.util.Date)' on a null object reference
+        if (df_date != null) {
+            return "Title:" + title + "   " + df.format(getDatetime().getTime()) +
+                    "\nDescription:" + description;
+        }
+        else
+        return "Title:" + title + "   " +
+                    "\nDescription:" + description;
     }
 }

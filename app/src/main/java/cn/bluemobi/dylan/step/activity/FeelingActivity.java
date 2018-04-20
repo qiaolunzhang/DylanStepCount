@@ -13,6 +13,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -154,8 +155,14 @@ public class FeelingActivity extends AppCompatActivity{
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case RESULT_EDITING_FEELING:
-                if (requestCode == RESULT_EDITING_FEELING && resultCode == RESULT_OK && null != data) {
+                if (requestCode == RESULT_EDITING_FEELING && null != data) {
                     //todo 接受回传数据，储存数据库
+                    MyImage new_image = (MyImage) data.getExtras().getSerializable("new_image");
+                    Log.d("url", new_image.getDescription());
+                    Log.d("description", new_image.getDescription());
+                    imageAdapter.add(new_image);
+                    //                    images.add(image);
+                    daOdb.addImage(new_image);
                     return;
                 }
             case RESULT_LOAD_IMAGE:
