@@ -113,11 +113,11 @@ public class MyImage implements Serializable{
         Date df_date = getDatetime().getTime();
         //todo 1 这里为什么一直会有SimpleDateFormat.format(java.util.Date)' on a null object reference
         if (df_date != null) {
-            return "Title:" + title + "   " + df.format(getDatetime().getTime()) +
+            return "Title:" + title + "   " + df.format(df_date) +
                     "\nDescription:" + description;
         }
         else
-        return "Title:" + title + "   " +
+            return "Title:" + title + "   " +
                     "\nDescription:" + description;
     }
 }

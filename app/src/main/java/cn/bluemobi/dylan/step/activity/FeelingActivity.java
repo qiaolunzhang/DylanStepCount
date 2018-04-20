@@ -158,11 +158,19 @@ public class FeelingActivity extends AppCompatActivity{
                 if (requestCode == RESULT_EDITING_FEELING && null != data) {
                     //todo 接受回传数据，储存数据库
                     MyImage new_image = (MyImage) data.getExtras().getSerializable("new_image");
+                    new_image.setDatetime(System.currentTimeMillis());
                     Log.d("url", new_image.getDescription());
                     Log.d("description", new_image.getDescription());
-                    imageAdapter.add(new_image);
+
+                    MyImage save_image= new MyImage();
+                    save_image.setTitle(new_image.getTitle());
+                    save_image.setDescription(new_image.getDescription());
+                    save_image.setDatetime(System.currentTimeMillis());
+                    save_image.setPath(new_image.getPath());
+
+                    imageAdapter.add(save_image);
                     //                    images.add(image);
-                    daOdb.addImage(new_image);
+                    daOdb.addImage(save_image);
                     return;
                 }
             case RESULT_LOAD_IMAGE:
