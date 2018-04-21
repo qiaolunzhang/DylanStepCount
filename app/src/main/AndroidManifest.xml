@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cn.bluemobi.dylan.step">
 
-    <!--计歩-->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- 计歩 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
@@ -20,7 +20,7 @@
         android:required="true" />
     <uses-feature
         android:name="android.hardware.camera"
-        android:required="false"/>
+        android:required="false" />
 
     <application
         android:name=".app.MyApplication"
@@ -29,7 +29,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity" android:launchMode="singleTask">
+        <activity
+            android:name=".activity.MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,16 +47,19 @@
         <activity
             android:name=".activity.FeelingActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".feeling.DisplayImage"
+        <activity
+            android:name=".feeling.DisplayImage"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".feeling.EditingActivity"
+        <activity
+            android:name=".feeling.EditingActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <service
             android:name=".step.service.StepService"
             android:priority="1000">
             <intent-filter>
-                <!-- 系统启动完成后会调用-->
+
+                <!-- 系统启动完成后会调用 -->
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.DATE_CHANGED" />
                 <action android:name="android.intent.action.MEDIA_MOUNTED" />
@@ -69,7 +74,8 @@
             android:priority="1000"
             android:process="cn.bluemobi.dylan.step..pedometer.StepsDetectService">
             <intent-filter>
-                <!-- 系统启动完成后会调用-->
+
+                <!-- 系统启动完成后会调用 -->
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.DATE_CHANGED" />
                 <action android:name="android.intent.action.MEDIA_MOUNTED" />
@@ -80,6 +86,9 @@
             </intent-filter>
         </service>
 
+        <activity
+            android:name=".activity.VisualActivity"
+            android:label="@string/title_activity_visual"></activity>
     </application>
 
 </manifest>
