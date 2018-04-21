@@ -64,18 +64,17 @@
             android:id="@+id/feeling_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/tv_set"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="69dp"
+            android:layout_alignStart="@+id/cc"
+            android:layout_marginBottom="67dp"
             android:text="锻炼感想" />
 
         <Button
             android:id="@+id/visual_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
+            android:layout_alignEnd="@+id/cc"
             android:layout_alignTop="@+id/feeling_button"
-            android:layout_marginEnd="76dp"
             android:text="可视化" />
 
     </RelativeLayout>

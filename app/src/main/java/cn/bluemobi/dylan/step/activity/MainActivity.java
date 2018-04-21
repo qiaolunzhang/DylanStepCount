@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_set.setOnClickListener(this);
         tv_data.setOnClickListener(this);
         feeling_button.setOnClickListener(this);
+        visual_button.setOnClickListener(this);
     }
 
     private void initData() {
