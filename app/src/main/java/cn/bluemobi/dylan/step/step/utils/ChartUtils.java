@@ -48,7 +48,7 @@ public class ChartUtils {
         xAxis.setDrawAxisLine(false);
         // 设置x轴数据的位置
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTextColor(Color.BLUE);
+        xAxis.setTextColor(Color.BLACK);
         xAxis.setTextSize(12);
         xAxis.setGridColor(Color.parseColor("#30FFFFFF"));
         // 设置x轴数据偏移量
@@ -61,7 +61,7 @@ public class ChartUtils {
         yAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         // 不从y轴发出横向直线
         yAxis.setDrawGridLines(false);
-        yAxis.setTextColor(Color.WHITE);
+        yAxis.setTextColor(Color.BLACK);
         yAxis.setTextSize(12);
         // 设置y轴数据偏移量
         yAxis.setXOffset(30);
@@ -90,7 +90,7 @@ public class ChartUtils {
         } else {
             lineDataSet = new LineDataSet(values, "");
             // 设置曲线颜色
-            lineDataSet.setColor(Color.parseColor("#FFFFFF"));
+            lineDataSet.setColor(Color.parseColor("RED"));
             // 设置平滑曲线
             lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
             // 不显示坐标点的小圆点
