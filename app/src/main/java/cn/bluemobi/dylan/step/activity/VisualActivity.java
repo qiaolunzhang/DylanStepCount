@@ -38,17 +38,25 @@ public class VisualActivity extends Activity {
     private List<Entry> getData() {
         List<Entry> values = new ArrayList<>();
         List<StepData> stepDatas = DbUtils.getQueryAll(StepData.class);
-        for(StepData item : stepDatas) {
-            Logger.d("teststepDatas"+item);
-            values.add(new Entry(Float.parseFloat("1"), Float.parseFloat("100")));
-        }
-//        values.add(new Entry(0, 1500));
-//        values.add(new Entry(1, 2000));
-//        values.add(new Entry(2, 2345));
-//        values.add(new Entry(3, 500));
-//        values.add(new Entry(4, 200));
-//        values.add(new Entry(5, 3500));
-//        values.add(new Entry(6, 10000));
+        // 真实数据
+        // Integer i = 0;
+        // for(StepData item : stepDatas) {
+        //     values.add(new Entry(i, Float.parseFloat(item.getStep())));
+        //     i = i + 1;
+        // }
+        // Logger.d("teststepDatas"+stepDatas.size());
+        // for(int x = i; x <= 6; x = x+1) {
+        //     values.add(new Entry(x, 100));
+        // }
+
+        // 测试数据
+        values.add(new Entry(0, 1500));
+        values.add(new Entry(1, 2000));
+        values.add(new Entry(2, 2345));
+        values.add(new Entry(3, 2000));
+        values.add(new Entry(4, 1000));
+        values.add(new Entry(5, 3500));
+        values.add(new Entry(6, 10000));
         return values;
     }
 }
