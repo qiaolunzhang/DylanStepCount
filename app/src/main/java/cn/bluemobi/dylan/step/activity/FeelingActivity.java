@@ -156,7 +156,6 @@ public class FeelingActivity extends AppCompatActivity{
         switch (requestCode) {
             case RESULT_EDITING_FEELING:
                 if (requestCode == RESULT_EDITING_FEELING && null != data) {
-                    //todo 接受回传数据，储存数据库
                     MyImage new_image = (MyImage) data.getExtras().getSerializable("new_image");
                     new_image.setDatetime(System.currentTimeMillis());
                     Log.d("url", new_image.getDescription());

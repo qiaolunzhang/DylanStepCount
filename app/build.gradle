@@ -29,4 +29,5 @@ dependencies {
     compile 'com.orhanobut:logger:1.8'
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.android.support:design:24.2.1'
+    //compile 'org.tensorflow:tensorflow-android:+'
 }
