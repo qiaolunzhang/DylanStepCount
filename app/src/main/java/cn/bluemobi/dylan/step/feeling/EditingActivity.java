@@ -64,7 +64,7 @@ public class EditingActivity extends AppCompatActivity implements View.OnClickLi
         dialog.findViewById(R.id.btnChoosePath).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //todo activeGallery();
+                activeGallery();
             }
         });
         dialog.findViewById(R.id.btnTakePhoto).setOnClickListener(new View.OnClickListener() {
@@ -75,6 +75,14 @@ public class EditingActivity extends AppCompatActivity implements View.OnClickLi
         });
 
         dialog.show();
+    }
+
+    /**
+     * load a photo
+     */
+    private void activeGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, RESULT_LOAD_IMAGE);
     }
 
 
@@ -125,13 +133,16 @@ public class EditingActivity extends AppCompatActivity implements View.OnClickLi
                     cursor.close();
                     MyImage new_image= new MyImage();
                     new_image.setTitle("感想");
-                    new_image.setDescription("这是今天记录的图片。");
+                    //new_image.setDescription("这是今天记录的图片。");
+                    String feeling_string= feeling_text.getText().toString();
+                    new_image.setDescription(feeling_string);
                     new_image.setDatetime(System.currentTimeMillis());
                     new_image.setPath(picturePath);
-                    //                    images.add(image);//notifyDataSetChanged does not work well sometimes
-                    //imageAdapter.add(new_image);
-                    //daOdb.addImage(new_image);
-                    //todo 回传图片数据
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra("new_image", new_image);
+                    setResult(RESULT_EDITING_FEELING, resultIntent);
+                    dialog.dismiss();
+                    finish();
                 }
             case REQUEST_IMAGE_CAPTURE:
                 if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
@@ -143,20 +154,8 @@ public class EditingActivity extends AppCompatActivity implements View.OnClickLi
                     MyImage new_image = new MyImage();
                     new_image.setTitle("感想");
 
-
-                    /*
-                    View view1 = LayoutInflater.from(this).inflate(R.layout.dialog_view, null);
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setTitle("自定义对话框");
-                    builder.setIcon(R.mipmap.ic_launcher);//设置图标
-                    //设置自定义view
-                    builder.setView(view1);
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                    */
-
-                    new_image.setDescription("这是今天记录的图片。");
+                    String feeling_string= feeling_text.getText().toString();
+                    new_image.setDescription(feeling_string);
                     new_image.setDatetime(System.currentTimeMillis());
                     new_image.setPath(picturePath);
 
@@ -165,10 +164,6 @@ public class EditingActivity extends AppCompatActivity implements View.OnClickLi
                     setResult(RESULT_EDITING_FEELING, resultIntent);
                     dialog.dismiss();
                     finish();
-                    //imageAdapter.add(new_image);
-                    //                    images.add(image);
-                    //daOdb.addImage(new_image);
-                    //todo 回传图片数据
                 }
         }
     }
