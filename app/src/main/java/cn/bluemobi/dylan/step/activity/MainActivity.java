@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView tv_set;
     private TextView tv_isSupport;
     private Button feeling_button;
+    private Button visual_button;
     private SharedPreferencesUtils sp;
 
     private void assignViews() {
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_set = (TextView) findViewById(R.id.tv_set);
         tv_isSupport = (TextView) findViewById(R.id.tv_isSupport);
         feeling_button = (Button) findViewById(R.id.feeling_button);
+        visual_button = (Button) findViewById(R.id.visual_button);
     }
 
     @Override
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_set.setOnClickListener(this);
         tv_data.setOnClickListener(this);
         feeling_button.setOnClickListener(this);
+        visual_button.setOnClickListener(this);
     }
 
     private void initData() {
@@ -126,6 +129,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.feeling_button:
                 startActivity(new Intent(this, FeelingActivity.class));
+                break;
+            case R.id.visual_button:
+                startActivity(new Intent(this, VisualActivity.class));
                 break;
         }
     }
