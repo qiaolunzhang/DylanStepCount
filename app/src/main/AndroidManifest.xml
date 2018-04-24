@@ -47,6 +47,8 @@
         <activity
             android:name=".activity.FeelingActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".activity.AchievementActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".feeling.DisplayImage"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

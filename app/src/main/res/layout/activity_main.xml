@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/cc"
-            android:layout_marginBottom="67dp"
+            android:layout_marginBottom="81dp"
             android:text="锻炼感想" />
 
         <Button
@@ -74,8 +74,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/cc"
+            android:layout_alignRight="@+id/cc"
             android:layout_alignTop="@+id/feeling_button"
             android:text="可视化" />
+
+        <Button
+            android:id="@+id/achievement_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="23dp"
+            android:text="锻炼成就与情感分析" />
 
     </RelativeLayout>
 </RelativeLayout>
