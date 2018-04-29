@@ -1,14 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@drawable/run"
     android:layout_height="match_parent">
 
     <EditText
         android:id="@+id/editText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="112dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:text="你已经锻炼了5天"
         android:textAlignment="center"
-        android:text="你已经锻炼了xx天" />
+        android:textColor="@color/black" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:text="你有3天完成了计划"
+        android:textAlignment="center"
+        android:textColor="@color/red" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="match_parent"
+        android:layout_height="131dp"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:text="你现在的等级是3颗星"
+        android:textAlignment="center"
+        android:textColor="@color/red" />
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_gravity="center"
+        android:ellipsize="end"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:maxLines="5"
+        android:text="你用自己不屈的汗水 刷新每一秒的记录"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary" />
+
 </LinearLayout>

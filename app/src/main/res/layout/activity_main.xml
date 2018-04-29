@@ -85,7 +85,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="23dp"
-            android:text="锻炼成就与情感分析" />
+            android:text="锻炼成就" />
 
     </RelativeLayout>
 </RelativeLayout>
