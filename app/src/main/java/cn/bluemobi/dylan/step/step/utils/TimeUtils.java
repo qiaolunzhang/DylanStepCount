@@ -17,7 +17,7 @@ public class TimeUtils {
      * @param time 时间
      */
     public static String dateToString(long time) {
-        return dateToString(time, "yyyy.MM.dd HH:mm");
+        return dateToString(time, "yyyy.MM.dd HH:mm:ss");
     }
 
     /**
