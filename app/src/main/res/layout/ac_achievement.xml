@@ -10,7 +10,7 @@
         android:layout_height="112dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="你已经锻炼了5天"
+        android:text="你已经锻炼了1天"
         android:textAlignment="center"
         android:textColor="@color/black" />
 
@@ -22,7 +22,7 @@
         android:ems="10"
         android:gravity="center"
         android:inputType="textPersonName"
-        android:text="你有3天完成了计划"
+        android:text="你有0天完成了计划"
         android:textAlignment="center"
         android:textColor="@color/red" />
 

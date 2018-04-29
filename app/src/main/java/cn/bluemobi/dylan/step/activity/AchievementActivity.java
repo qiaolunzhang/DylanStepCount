@@ -11,4 +11,6 @@ public class AchievementActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ac_achievement);
     }
+    //@todo 获取锻炼天数
+    //@todo 获取锻炼计划完成天数
 }
