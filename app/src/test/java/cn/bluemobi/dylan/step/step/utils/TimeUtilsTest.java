@@ -8,21 +8,23 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static org.junit.Assert.*;
 
 public class TimeUtilsTest {
 
-//    @Before
-//    public void setUp() throws Exception {
-//    }
+    @Before
+    public void setUp() throws Exception {
+    }
 
     @Test
     public void dateToString() {
         long currentTime = System.currentTimeMillis();
-        System.out.println(currentTime);
         String time = TimeUtils.dateToString(currentTime);
-        int a = 1;
-        int b = 1;
-        Assert.assertEquals(a, b);
+        Date day=new Date();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Assert.assertEquals(df.format(day).replace("-","."), time);
     }
 }
