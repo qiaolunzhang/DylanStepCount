@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 public void updateUi(int stepCount) {
                     String planWalk_QTY = (String) sp.getParam("planWalk_QTY", "7000");
                     cc.setCurrentCount(Integer.parseInt(planWalk_QTY), stepCount);
-                    if (Integer.parseInt(planWalk_QTY) > 10) {
+                    if (Integer.parseInt(planWalk_QTY) > 5000) {
                         exercise_analysis.setText("运动量达标，很棒，再接再厉!");
                     }
                 }
