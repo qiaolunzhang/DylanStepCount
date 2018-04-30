@@ -87,5 +87,14 @@
             android:layout_marginBottom="23dp"
             android:text="锻炼成就" />
 
+        <TextView
+            android:id="@+id/exercise_analysis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cc"
+            android:layout_centerHorizontal="true"
+            android:text="当前运动还不够哦"
+            android:textColor="#333333"/>
+
     </RelativeLayout>
 </RelativeLayout>

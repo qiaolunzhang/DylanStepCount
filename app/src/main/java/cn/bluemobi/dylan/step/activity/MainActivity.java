@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button visual_button;
     private Button achievement_button;
     private SharedPreferencesUtils sp;
+    private TextView exercise_analysis;
 
     private void assignViews() {
         tv_data = (TextView) findViewById(R.id.tv_data);
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         feeling_button = (Button) findViewById(R.id.feeling_button);
         visual_button = (Button) findViewById(R.id.visual_button);
         achievement_button = (Button) findViewById(R.id.achievement_button);
+        exercise_analysis = (TextView) findViewById(R.id.exercise_analysis);
     }
 
     @Override
@@ -104,6 +106,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 public void updateUi(int stepCount) {
                     String planWalk_QTY = (String) sp.getParam("planWalk_QTY", "7000");
                     cc.setCurrentCount(Integer.parseInt(planWalk_QTY), stepCount);
+                    if (Integer.parseInt(planWalk_QTY) > 10) {
+                        exercise_analysis.setText("运动量达标，很棒，再接再厉!");
+                    }
                 }
             });
         }
