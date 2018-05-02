@@ -54,9 +54,9 @@
             android:id="@+id/tv_isSupport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cc"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
+            android:layout_marginBottom="117dp"
             android:text="该设备支持计步"
             android:textColor="#333333" />
 
@@ -66,25 +66,25 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/cc"
-            android:layout_marginBottom="81dp"
+            android:layout_marginBottom="60dp"
             android:text="锻炼感想" />
 
         <Button
             android:id="@+id/visual_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/cc"
-            android:layout_alignRight="@+id/cc"
+            android:layout_alignParentEnd="true"
             android:layout_alignTop="@+id/feeling_button"
+            android:layout_marginEnd="102dp"
             android:text="可视化" />
 
         <Button
             android:id="@+id/achievement_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/feeling_button"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="23dp"
+            android:layout_marginTop="-60dp"
             android:text="锻炼成就" />
 
         <TextView
@@ -94,6 +94,16 @@
             android:layout_below="@+id/cc"
             android:layout_centerHorizontal="true"
             android:text="当前运动还不够哦"
+            android:textColor="#333333" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="150dp"
+            android:text="当前速度为0m/s"
             android:textColor="#333333"/>
 
     </RelativeLayout>
