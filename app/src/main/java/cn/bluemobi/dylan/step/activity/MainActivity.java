@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             try {
                 double speed = (step_now - step_old) / 5.0 * 0.7;
                 step_old = step_now;
-                speed_textView.setText("当前速度为"+speed+"m/s");
+                speed_textView.setText(String.format("当前速度为: %.2f m/s", speed));
             } finally {
                 // 100% guarantee that this always happens, even if
                 // your update method throws an exception

@@ -19,7 +19,7 @@
         android:layout_gravity="top"
         android:gravity="center"
         android:textColor="@color/white"
-        android:background="#809575CD"/>
+        android:background="#80cdc675"/>
 
     <TableRow
         android:id="@+id/table_row"
@@ -32,7 +32,7 @@
             android:onClick="btnDeleteOnClick"
             android:layout_weight="1"
             android:layout_height="50dp"
-            android:background="@color/deepPurple4"
+            android:background="@color/yellow"
             android:textColor="@color/white"
             android:layout_marginRight="1dp"
             android:id="@+id/btnDelete"
@@ -42,7 +42,7 @@
             android:onClick="btnBackOnClick"
             android:layout_weight="1"
             android:layout_height="50dp"
-            android:background="@color/deepPurple4"
+            android:background="@color/yellow"
             android:textColor="@color/white"
             android:layout_marginLeft="1dp"
             android:id="@+id/btnBack"
