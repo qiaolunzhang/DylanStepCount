@@ -5,11 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import cn.bluemobi.dylan.step.R;
 import cn.bluemobi.dylan.step.step.UpdateUiCallBack;
@@ -21,15 +24,21 @@ import cn.bluemobi.dylan.step.view.StepArcView;
  * 记步主页
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    private Handler mHandler;
     private TextView tv_data;
     private StepArcView cc;
     private TextView tv_set;
     private TextView tv_isSupport;
+    private TextView starView;
     private Button feeling_button;
     private Button visual_button;
     private Button achievement_button;
     private SharedPreferencesUtils sp;
     private TextView exercise_analysis;
+    private TextView speed_textView;
+    private int mInterval = 5000;
+    private int step_old = 0;
+    private int step_now = 0;
 
     private void assignViews() {
         tv_data = (TextView) findViewById(R.id.tv_data);
@@ -40,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         visual_button = (Button) findViewById(R.id.visual_button);
         achievement_button = (Button) findViewById(R.id.achievement_button);
         exercise_analysis = (TextView) findViewById(R.id.exercise_analysis);
+        speed_textView = (TextView) findViewById(R.id.speed_textView);
+        starView = (TextView) findViewById(R.id.startView);
     }
 
     @Override
@@ -49,7 +60,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         assignViews();
         initData();
         addListener();
+        mHandler = new Handler();
+        startRepeatingTask();
     }
+
+
+    Runnable mStatusChecker = new Runnable() {
+        @Override
+        public void run() {
+            try {
+                double speed = (step_now - step_old) / 5.0 * 0.7;
+                step_old = step_now;
+                speed_textView.setText("当前速度为"+speed+"m/s");
+            } finally {
+                // 100% guarantee that this always happens, even if
+                // your update method throws an exception
+                mHandler.postDelayed(mStatusChecker, mInterval);
+            }
+        }
+    };
+
+    void startRepeatingTask() {
+        mStatusChecker.run();
+    }
+
+    void stopRepeatingTask() {
+        mHandler.removeCallbacks(mStatusChecker);
+    }
+
 
 
     private void addListener() {
@@ -106,10 +144,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 public void updateUi(int stepCount) {
                     String planWalk_QTY = (String) sp.getParam("planWalk_QTY", "7000");
                     cc.setCurrentCount(Integer.parseInt(planWalk_QTY), stepCount);
-                    if (Integer.parseInt(planWalk_QTY) > 5000) {
+                    if (stepCount > 5000) {
                         exercise_analysis.setText("运动量达标，很棒，再接再厉!");
                     }
-                }
+                    int starNumber = stepCount * 5 / Integer.parseInt(planWalk_QTY);
+                    starView.setText("当前你的等级为"+starNumber+"颗星");
+                    step_now = stepCount;
+
+               }
             });
         }
 
@@ -152,5 +194,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (isBind) {
             this.unbindService(conn);
         }
+        stopRepeatingTask();
     }
 }

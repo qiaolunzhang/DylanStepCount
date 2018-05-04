@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="117dp"
+            android:layout_marginBottom="167dp"
             android:text="该设备支持计步"
             android:textColor="#333333" />
 
@@ -65,8 +65,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/cc"
-            android:layout_marginBottom="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="95dp"
+            android:layout_marginStart="95dp"
             android:text="锻炼感想" />
 
         <Button
@@ -82,9 +83,9 @@
             android:id="@+id/achievement_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/feeling_button"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="-60dp"
+            android:layout_marginBottom="31dp"
             android:text="锻炼成就" />
 
         <TextView
@@ -97,14 +98,24 @@
             android:textColor="#333333" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/speed_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="150dp"
+            android:layout_marginBottom="204dp"
             android:text="当前速度为0m/s"
-            android:textColor="#333333"/>
+            android:textColor="#333333" />
+
+        <TextView
+            android:id="@+id/startView"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="239dp"
+            android:text="当前你的等级为0颗星"
+            android:textColor="#333333" />
 
     </RelativeLayout>
 </RelativeLayout>
